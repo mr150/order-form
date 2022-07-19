@@ -1,6 +1,17 @@
 const validators = {
 	required: ['Обязательное поле', (value) => value !== ''],
-	email: ['Неверный формат email', (value) => (typeof value === 'string') && value.includes('@')],
+	email: [
+		'Некорректный email',
+		(value) => (typeof value === 'string') && value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+	],
+	phone: [
+		'Неверный формат телефона',
+		(value) => (typeof value === 'string') && value.match(/^\+[0-9][\s]?[0-9]{3}?[\s]?[0-9]{3}[\s]?[0-9]{2}[\s]?[0-9]{2}$/)
+	],
+	noLatin: [
+		'Разрешена только кириллица',
+		(value) => (typeof value === 'string') && value.match(/^[А-яёЁ]+$/)
+	],
 };
 
 export function check(value, constraints) {

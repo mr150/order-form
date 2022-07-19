@@ -1,8 +1,7 @@
 const validation = {
-	name: ['required'],
+	name: ['required', 'noLatin'],
 	email: ['required', 'email'],
-	phone: ['required'],
-	address: ['required'],
+	phone: ['required', 'phone'],
 };
 
 export default class OrderForm extends HTMLElement {
