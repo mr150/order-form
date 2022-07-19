@@ -1,16 +1,8 @@
-const empty = {
-	'Обязательное поле': (value) => value === ''
-};
-
-const validators = {
-	name: empty,
-	email: Object.assign(
-		{},
-		empty,
-		{'Неверный формат email': (value) => (typeof value !== 'string') || !value.includes('@')},
-	),
-	phone: empty,
-	address: empty,
+const validation = {
+	name: ['required'],
+	email: ['required', 'email'],
+	phone: ['required'],
+	address: ['required'],
 };
 
 export default class OrderForm extends HTMLElement {
@@ -21,7 +13,7 @@ export default class OrderForm extends HTMLElement {
     this.form = this.querySelector('form');
     this.btnSubmit = this.querySelector('[type="submit"]');
 		this.querySelectorAll('form-field').forEach((item) => {
-			item.validators = validators[item.name];
+			item.validators = validation[item.name];
 			this.fields[item.name] = item;
 			this.#fieldNames.push(item.name);
 		});

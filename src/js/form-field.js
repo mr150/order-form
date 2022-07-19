@@ -1,8 +1,9 @@
+import { check } from './validator.min.js';
+
 export default class FormField extends HTMLElement {
 	name = '';
 	isValid = false;
-	#validatorsMap = {};
-	#errorMessages = [];
+	validators = [];
 
 	connectedCallback() {
     this.input = this.querySelector('input');
@@ -10,20 +11,8 @@ export default class FormField extends HTMLElement {
     this.message = this.querySelector('.message');
 	}
 
-	set validators(value) {
-		this.#errorMessages = Object.keys(value);
-		this.#validatorsMap = value;
-	}
-
-	get validators() {
-		return this.#validatorsMap;
-	}
-
 	validate() {
-		const message = this.#errorMessages.find(
-			(item) => this.#validatorsMap[item](this.input.value)
-		);
-
+		const message = check(this.input.value, this.validators);
 		const isValid = !message;
 
 		this.message.textContent = message;
