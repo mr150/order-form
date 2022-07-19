@@ -1,6 +1,10 @@
 @charset 'utf-8';
 
-@use 'mlut' as ml;
+@use 'mlut' as ml with (
+	$utils: (
+		'C': ('red'),
+	),
+);
 
 form-field {
 	label::before {

@@ -7,10 +7,10 @@
 	];
 
 	const labels = [
-		'Имя',
-		'Email',
-		'Телефон',
-		'Адрес',
+		{name: 'Имя', required: true},
+		{name: 'Email', required: true},
+		{name: 'Телефон', required: true},
+		{name: 'Адрес', required: false},
 	];
 
 doctype html
@@ -23,11 +23,15 @@ html(lang="ru")
 		link(href="css/style.min.css" rel="stylesheet")
 	body.M0.D-f.H100vh
 		order-form.D.P2gg.M-a.Bd
+			h2.Mt0.Mb5su.Txa Заказ
 			form(action="https://echo.htmlacademy.ru/" method="post" novalidate)
 				each item, i in fields
 					form-field.D.Mb5su
 						label.D-ib.Ps
-							span.D.Mb1su= labels[i]
+							span.D.Mb1su
+								=labels[i].name
+								- if(labels[i].required)
+									sup.C-red *
 							input.P2su.Bd()&attributes(item)
 						.message.Mt1su.Txa-r
 
