@@ -12,7 +12,7 @@ export default class OrderForm extends HTMLElement {
     this.form = this.querySelector('form');
     this.btnSubmit = this.querySelector('[type="submit"]');
 		this.querySelectorAll('form-field').forEach((item) => {
-			item.validators = validation[item.name];
+			item.validators = validation[item.name] || [];
 			this.fields[item.name] = item;
 			this.#fieldNames.push(item.name);
 		});
@@ -29,7 +29,7 @@ export default class OrderForm extends HTMLElement {
 
 	checkValidity() {
 		const isFormInvalid = this.#fieldNames.some(
-			(item) => !this.fields[item].isValid
+			(item) => !this.fields[item].valid
 		);
 
 		this.btnSubmit.disabled = isFormInvalid;
