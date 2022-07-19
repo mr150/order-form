@@ -1,15 +1,42 @@
 @charset 'utf-8';
 
-@use 'mlut' with (
-	$colors: (
-		'red': #c00,
-		'green': #0c0,
-	),
-	$utils: (
-		'Colors': (
-			'KW.colors', 'red*70p', 'green*70p',
-		),
-		'Bdw': (1su),
-		'Bdrd': (2, 1su),
-	),
-);
+@use 'mlut' as ml;
+
+form-field {
+	label::before {
+		position: absolute;
+		right: ml.su(-4);
+		bottom: ml.su(4);
+		width: ml.su(2);
+		height: ml.su(2);
+		border-radius: 50%;
+		content: '';
+	}
+
+	.message {
+		display: none;
+		font-size: ml.su(3);
+	}
+
+	&[valid] {
+		input,
+		label::before {
+			background-color: rgba(#0c0, 0.5);
+		}
+
+		.message {
+			display: none;
+		}
+	}
+
+	&[invalid] {
+		input,
+		label::before {
+			background-color: rgba(#c00, 0.5);
+		}
+
+		.message {
+			display: block;
+		}
+	}
+}

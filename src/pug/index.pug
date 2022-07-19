@@ -1,0 +1,35 @@
+-
+	const fields = [
+		{name: 'name', placeholder: 'Василий', type: 'text'},
+		{name: 'email', placeholder: 'test@bk.ru', type: 'email'},
+		{name: 'phone', placeholder: '+7 XXX XXX XX XX', type: 'tel'},
+		{name: 'address', placeholder: 'г. Москва, Ленина 65', type: 'text'},
+	];
+
+	const labels = [
+		'Имя',
+		'Email',
+		'Телефон',
+		'Адрес',
+	];
+
+doctype html
+html(lang="ru")
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		title Форма оформления заказа
+		link(href="css/style.min.css" rel="stylesheet")
+	body.M0.D-f.H100vh
+		order-form.D.P2gg.M-a.Bd
+			form(action="https://echo.htmlacademy.ru/" method="post" novalidate)
+				each item, i in fields
+					form-field.D.Mb5su
+						label.D-ib.Ps
+							span.D.Mb1su= labels[i]
+							input.P2su.Bd()&attributes(item)
+						.message.Mt1su.Txa-r
+
+				button.D.P2su.-Mx-a.Mt2gg.Bd(class="" type="submit" disabled) Оформить заказ
+		script(src="js/index.min.js" type="module")

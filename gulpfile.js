@@ -5,6 +5,7 @@ const gulp = require('gulp'),
 		uglify = require('gulp-uglify'),
 		rename = require('gulp-rename'),
 		del = require('del'),
+		pug = require('gulp-pug'),
 		plumber = require('gulp-plumber'),
 		size = require('gulp-size'),
 		purgecss = require('gulp-purgecss'),
@@ -22,6 +23,7 @@ let path = {
 		css: dirs.src + 'css/',
 		sass: dirs.src + 'sass/',
 		js: dirs.src + 'js/',
+		pug: dirs.src + 'pug/',
 		img: dirs.src + 'img/',
 		imgAssets: dirs.src + 'img/assets/',
 		fonts: dirs.src + 'fonts/'
@@ -37,6 +39,7 @@ let path = {
 const files = {
 	styles: '**/*.{scss,css}',
 	js: '**/*.js',
+	pug: '**/*.pug',
 	img: '*.{png,jpg,svg,webp}',
 	html: '**/*.html',
 	all: '**/*'
@@ -49,6 +52,7 @@ path = Object.assign({
 			path.src.sass + files.styles
 		],
 		html: dirs.src + files.html,
+		pug: dirs.src + files.pug,
 		js: [
       path.src.js + files.js,
 		]
@@ -147,10 +151,19 @@ gulp.task('html', function(){
 		.pipe(browserSync.stream());
 });
 
-gulp.task('compile', gulp.series('style', 'html', 'scripts', 'css-update'));
+gulp.task('pug', function(){
+	return gulp.src(path.src.pug + '*.pug', {allowEmpty: true})
+		.pipe(plumber())
+		.pipe(pug({'pretty': '\t'}))
+		.pipe(gulp.dest(dirs.src))
+		.pipe(gulp.dest(dirs.build));
+});
+
+gulp.task('compile', gulp.series('style', 'pug', 'scripts', 'css-update'));
 
 gulp.task('default', gulp.parallel('compile', 'server', function(){
 	gulp.watch(path.watch.styles, gulp.series('style'));
+	gulp.watch(path.watch.pug, gulp.series('pug'));
 	gulp.watch(path.watch.html, gulp.parallel('html', 'css-update'));
 
   gulp

@@ -16,6 +16,7 @@
 		"gulp-autoprefixer": "^8.0.0",
 		"gulp-csso": "^4.0.1",
 		"gulp-plumber": "^1.2.1",
+		"gulp-pug": "^5.0.0",
 		"gulp-purgecss": "^2.3.0",
 		"gulp-rename": "^2.0.0",
 		"gulp-sass": "^5.0.0",
@@ -24,6 +25,5 @@
 		"gulp-uglify": "^3.0.2",
 		"mlut": "^4.0.1",
 		"sass": "^1.43.4"
-	},
-	"dependencies": {}
+	}
 }

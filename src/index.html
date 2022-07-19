@@ -1,10 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Форма оформления заказа</title>
-		<link href="css/style.min.css" rel="stylesheet"/>
-  </head>
-  <body class="M0 D-f H100vh">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Форма оформления заказа</title>
+		<link href="css/style.min.css" rel="stylesheet">
+	</head>
+	<body class="M0 D-f H100vh">
+		<order-form class="D P2gg M-a Bd">
+			<form action="https://echo.htmlacademy.ru/" method="post" novalidate>
+				<form-field class="D Mb5su">
+					<label class="D-ib Ps"><span class="D Mb1su">Имя</span>
+						<input class="P2su Bd" name="name" placeholder="Василий" type="text">
+					</label>
+					<div class="message Mt1su Txa-r"></div>
+				</form-field>
+				<form-field class="D Mb5su">
+					<label class="D-ib Ps"><span class="D Mb1su">Email</span>
+						<input class="P2su Bd" name="email" placeholder="test@bk.ru" type="email">
+					</label>
+					<div class="message Mt1su Txa-r"></div>
+				</form-field>
+				<form-field class="D Mb5su">
+					<label class="D-ib Ps"><span class="D Mb1su">Телефон</span>
+						<input class="P2su Bd" name="phone" placeholder="+7 XXX XXX XX XX" type="tel">
+					</label>
+					<div class="message Mt1su Txa-r"></div>
+				</form-field>
+				<form-field class="D Mb5su">
+					<label class="D-ib Ps"><span class="D Mb1su">Адрес</span>
+						<input class="P2su Bd" name="address" placeholder="г. Москва, Ленина 65" type="text">
+					</label>
+					<div class="message Mt1su Txa-r"></div>
+				</form-field>
+				<button class="D P2su -Mx-a Mt2gg Bd" type="submit" disabled>Оформить заказ</button>
+			</form>
+		</order-form>
+		<script src="js/index.min.js" type="module"></script>
 	</body>
 </html>
