@@ -12,7 +12,10 @@ export default class OrderForm extends HTMLElement {
     this.form = this.querySelector('form');
     this.btnSubmit = this.querySelector('[type="submit"]');
 		this.querySelectorAll('form-field').forEach((item) => {
-			item.validators = validation[item.name] || [];
+			if(item.name in validation) {
+				item.validators = validation[item.name];
+			}
+
 			this.fields[item.name] = item;
 			this.#fieldNames.push(item.name);
 		});
@@ -23,17 +26,10 @@ export default class OrderForm extends HTMLElement {
 	validate(e) {
 		if(e.target.tagName === 'INPUT') {
 			this.fields[e.target.name].validate();
-			this.checkValidity();
+
+			this.btnSubmit.disabled = this.#fieldNames.some(
+				(item) => !this.fields[item].valid
+			);
 		}
-	}
-
-	checkValidity() {
-		const isFormInvalid = this.#fieldNames.some(
-			(item) => !this.fields[item].valid
-		);
-
-		this.btnSubmit.disabled = isFormInvalid;
-
-		return !isFormInvalid;
 	}
 }
