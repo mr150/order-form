@@ -28,10 +28,8 @@ html(lang="ru")
 				each item, i in fields
 					form-field.D.Mb5su
 						label.D-ib.Ps
-							span.D.Mb1su
+							span.D.Mb1su(class=labels[i].required ? "Ct-'*'_af C-red_af Va-sp_af" : '')
 								=labels[i].name
-								- if(labels[i].required)
-									sup.C-red *
 							input.P2su.Bd()&attributes(item)
 						.message.Mt1su.Txa-r
 

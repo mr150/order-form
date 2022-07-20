@@ -44,3 +44,9 @@ form-field {
 		}
 	}
 }
+
+/*! purgecss start ignore */
+@include ml.apply(
+	"Ct-'*'_af C-red_af Va-sp_af"
+);
+/*! purgecss end ignore */
