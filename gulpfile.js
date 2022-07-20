@@ -10,7 +10,10 @@ const gulp = require('gulp'),
 		size = require('gulp-size'),
 		purgecss = require('gulp-purgecss'),
 		sourcemaps = require('gulp-sourcemaps'),
+		ts = require("gulp-typescript"),
 		autoprefixer = require('gulp-autoprefixer');
+
+const tsProject = ts.createProject('tsconfig.json');
 
 const dirs = {
 	src: 'src/',
@@ -38,7 +41,7 @@ let path = {
 
 const files = {
 	styles: '**/*.{scss,css}',
-	js: '**/*.js',
+	js: '**/*.{js,ts}',
 	pug: '**/*.pug',
 	img: '*.{png,jpg,svg,webp}',
 	html: '**/*.html',
@@ -132,8 +135,8 @@ function compileJs(sources) {
   return gulp.src(sources, {allowEmpty: true})
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
+    .pipe(tsProject())
+    .js.pipe(uglify())
     .pipe(size(sizeConfig))
     .pipe(gulp.dest(path.build.js))
     .pipe(sourcemaps.write(''))

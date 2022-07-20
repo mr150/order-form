@@ -1,14 +1,16 @@
-import { check } from './validator.min.js';
+import { check, Validator } from './validator.js';
 
 export default class FormField extends HTMLElement {
 	name = '';
-	validators = [];
+	validators: Validator[] = [];
 	#isValid = false;
+	input!: HTMLInputElement;
+	message!: HTMLElement;
 
 	connectedCallback() {
-    this.input = this.querySelector('input');
+    this.input = this.querySelector('input')!;
     this.name = this.input.name;
-    this.message = this.querySelector('.message');
+    this.message = this.querySelector('.message')!;
 	}
 
 	get valid() {
@@ -23,7 +25,7 @@ export default class FormField extends HTMLElement {
 		const message = check(this.input.value, this.validators);
 		const isValid = !message;
 
-		this.message.textContent = message;
+		this.message.textContent = message || '';
 		this.toggleAttribute('valid', isValid);
 		this.toggleAttribute('invalid', !isValid);
 
