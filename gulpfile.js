@@ -25,7 +25,7 @@ let path = {
 	src: {
 		css: dirs.src + 'css/',
 		sass: dirs.src + 'sass/',
-		js: dirs.src + 'js/',
+		js: dirs.src + 'ts/',
 		pug: dirs.src + 'pug/',
 		img: dirs.src + 'img/',
 		imgAssets: dirs.src + 'img/assets/',
