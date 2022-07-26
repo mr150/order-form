@@ -22,7 +22,7 @@ const validators: {
 	noLatin: (value) => (typeof value === 'string') && regExp.noLatin.test(value),
 };
 
-export function check(value: unknown, constraints: Validator[]) {
+export function check(value: unknown, constraints: Validator[]): string | false {
 	const name = constraints.find(
 		(item) => !validators[item](value)
 	);

@@ -17,7 +17,7 @@ export default class FormField extends HTMLElement {
 		return this.#isValid || !this.validators.length;
 	}
 
-	validate() {
+	validate(): boolean {
 		if(!this.validators.length) {
 			return true;
 		}
