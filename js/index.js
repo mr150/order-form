@@ -1,0 +1,1 @@
+import FormField from"./form-field.js";import OrderForm from"./order-form.js";customElements.define("form-field",FormField),customElements.define("order-form",OrderForm);
